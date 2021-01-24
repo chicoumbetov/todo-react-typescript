@@ -1,6 +1,6 @@
 import  * as React from 'react';
-import { TodoListItem } from './TodoListItem';
-//import { Todo } from './types';    // don't need since types are in d.ts
+import { AddTodoForm } from './AddTodoForm';
+import { TodoList } from './TodoList';
 
 const initialTodos: Array<Todo> = [
   { text: "Walk the dog", complete: false },
@@ -22,10 +22,15 @@ const App = () => {
     });
     setTodos(newTodos);
   }
+
+  const addTodo: AddTodo = newTodo => {
+    setTodos([...todos, {text: newTodo, complete: false}])
+  }
+
   return (
     <React.Fragment>
-      <TodoListItem todo={todos[0]} toggleTodo={toggleTodo}/>
-      <TodoListItem todo={todos[1]} toggleTodo={toggleTodo}/>
+      <TodoList todos={todos} toggleTodo={toggleTodo}/>
+      <AddTodoForm addTodo={addTodo}/>
     </React.Fragment>
     
   );
